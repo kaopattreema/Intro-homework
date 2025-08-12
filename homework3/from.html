@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+    <h1>แบบฟอร์มสมัครเรียนต่อระดับปริญญาตรี</h1>
+
+    <form id="applyForm" enctype="multipart/form-data" novalidate>
+      <fieldset>
+        <legend>ข้อมูลส่วนตัว</legend>
+        <div class="grid two-col">
+          <div>
+            <label for="title">คำนำหน้าชื่อ</label>
+            <select id="title" name="title" required>
+              <option value="">-- เลือก --</option>
+              <option>นาย</option>
+              <option>นางสาว</option>
+              <option>นาง</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="idcard">เลขประจำตัวประชาชน (13 หลัก)</label>
+            <input id="idcard" name="idcard" type="text" maxlength="13" inputmode="numeric" pattern="\d{13}" placeholder="ตัวเลข 13 หลัก" required>
+            <div id="idError" class="error" aria-live="polite" style="display:none;">โปรดกรอกรหัสประชาชนให้ครบ 13 หลักเป็นตัวเลขเท่านั้น</div>
+          </div>
+
+          <div>
+            <label for="firstname">ชื่อ</label>
+            <input id="firstname" name="firstname" type="text" required>
+          </div>
+
+          <div>
+            <label for="lastname">นามสกุล</label>
+            <input id="lastname" name="lastname" type="text" required>
+          </div>
+
+          <div>
+            <label for="birthdate">วันเดือนปีเกิด</label>
+            <input id="birthdate" name="birthdate" type="date" required>
+          </div>
+
+          <div>
+            <label for="age">อายุ (ปี)</label>
+            <input id="age" name="age" type="number" min="0" readonly>
+            <div class="small">อายุจะคำนวณอัตโนมัติจากวันเกิด</div>
+          </div>
+
+          <div>
+            <label>เพศ</label>
+            <div class="radio-group" role="radiogroup" aria-labelledby="genderLabel">
+              <label><input type="radio" name="gender" value="ชาย" required> ชาย</label>
+              <label><input type="radio" name="gender" value="หญิง"> หญิง</label>
+              <label><input type="radio" name="gender" value="ไม่ระบุ"> ไม่ระบุ</label>
+            </div>
+          </div>
+
+          <div>
+            <label for="nationality">สัญชาติ</label>
+            <input id="nationality" name="nationality" type="text" required>
+          </div>
+
+          <div>
+            <label for="ethnicity">เชื้อชาติ</label>
+            <input id="ethnicity" name="ethnicity" type="text">
+          </div>
+
+          <div>
+            <label for="religion">ศาสนา</label>
+            <input id="religion" name="religion" type="text">
+          </div>
+
+          <div>
+            <label for="phone">เบอร์โทรศัพท์</label>
+            <input id="phone" name="phone" type="tel" pattern="^[0-9+\-\s]{7,15}$" placeholder="เช่น 08xxxxxxxx" required>
+          </div>
+
+          <div>
+            <label for="email">อีเมล</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required>
+          </div>
+
+          <div style="grid-column:1/ -1;">
+            <label for="address">ที่อยู่</label>
+            <textarea id="address" name="address" placeholder="กรอกที่อยู่ (บ้านเลขที่, หมู่, ถนน, ตำบล/แขวง, อำเภอ/เขต, จังหวัด, รหัสไปรษณีย์)" required></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>ข้อมูลการสมัครเรียน</legend>
+        <div class="grid two-col">
+          <div>
+            <label for="qualification">วุฒิที่จบมา</label>
+            <select id="qualification" name="qualification" required>
+              <option value="">-- เลือก --</option>
+              <option>ม.6</option>
+              <option>ปวช.</option>
+              <option>ปวส.</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="schoolName">ชื่อสถานศึกษาที่จบ</label>
+            <input id="schoolName" name="schoolName" type="text" required>
+          </div>
+
+          <div>
+            <label for="gradYear">ปีที่จบ (พ.ศ.)</label>
+            <input id="gradYear" name="gradYear" type="number" min="2400" max="3000" placeholder="เช่น 2567" required>
+          </div>
+
+          <div>
+            <label for="gpa">GPA</label>
+            <input id="gpa" name="gpa" type="number" step="0.01" min="0" max="4" placeholder="เช่น 3.25" required>
+          </div>
+
+          <div>
+            <label for="major">สาขาที่สมัคร</label>
+            <select id="major" name="major" required>
+              <option value="">-- เลือกสาขา --</option>
+              <option>IT</option>
+              <option>ITI</option>
+              <option>INE</option>
+              <option>INET</option>
+            </select>
+          </div>
+
+          <div style="grid-column:1/ -1;">
+            <label for="reason">เหตุผลที่เลือกสาขา</label>
+            <textarea id="reason" name="reason" placeholder="บอกเหตุผลสั้น ๆ" required></textarea>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>ประวัติการศึกษา (กรอกอย่างน้อย 1 ระดับ)</legend>
+
+        <div class="note">กรอกข้อมูล 3 ระดับ: ประถมศึกษา / มัธยมต้น / มัธยมปลาย (หรือ ปวช./ปวส.)</div>
+
+        <fieldset>
+          <legend>ประถมศึกษา</legend>
+          <div class="grid three-col">
+            <div>
+              <label for="pri_school">สถานศึกษา</label>
+              <input id="pri_school" name="pri_school" type="text">
+            </div>
+            <div>
+              <label for="pri_province">จังหวัด</label>
+              <input id="pri_province" name="pri_province" type="text">
+            </div>
+            <div>
+              <label for="pri_year_in">ปีที่เข้า (พ.ศ.)</label>
+              <input id="pri_year_in" name="pri_year_in" type="number" min="2400" max="3000">
+            </div>
+            <div>
+              <label for="pri_year_out">ปีที่จบ (พ.ศ.)</label>
+              <input id="pri_year_out" name="pri_year_out" type="number" min="2400" max="3000">
+            </div>
+            <div>
+              <label for="pri_degree">วุฒิที่ได้รับ</label>
+              <input id="pri_degree" name="pri_degree" type="text">
+            </div>
+            <div>
+              <label for="pri_gpa">GPA</label>
+              <input id="pri_gpa" name="pri_gpa" type="number" step="0.01" min="0" max="4">
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>มัธยมต้น</legend>
+          <div class="grid three-col">
+            <div>
+              <label for="jun_school">สถานศึกษา</label>
+              <input id="jun_school" name="jun_school" type="text">
+            </div>
+            <div>
+              <label for="jun_province">จังหวัด</label>
+              <input id="jun_province" name="jun_province" type="text">
+            </div>
+            <div>
+              <label for="jun_year_in">ปีที่เข้า (พ.ศ.)</label>
+              <input id="jun_year_in" name="jun_year_in" type="number" min="2400" max="3000">
+            </div>
+            <div>
+              <label for="jun_year_out">ปีที่จบ (พ.ศ.)</label>
+              <input id="jun_year_out" name="jun_year_out" type="number" min="2400" max="3000">
+            </div>
+            <div>
+              <label for="jun_degree">วุฒิที่ได้รับ</label>
+              <input id="jun_degree" name="jun_degree" type="text">
+            </div>
+            <div>
+              <label for="jun_gpa">GPA</label>
+              <input id="jun_gpa" name="jun_gpa" type="number" step="0.01" min="0" max="4">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>มัธยมปลาย / ปวช. / ปวส.</legend>
+          <div class="grid three-col">
+            <div>
+              <label for="sen_school">สถานศึกษา</label>
+              <input id="sen_school" name="sen_school" type="text">
+            </div>
+            <div>
+              <label for="sen_province">จังหวัด</label>
+              <input id="sen_province" name="sen_province" type="text">
+            </div>
+            <div>
+              <label for="sen_year_in">ปีที่เข้า (พ.ศ.)</label>
+              <input id="sen_year_in" name="sen_year_in" type="number" min="2400" max="3000">
+            </div>
+            <div>
+              <label for="sen_year_out">ปีที่จบ (พ.ศ.)</label>
+              <input id="sen_year_out" name="sen_year_out" type="number" min="2400" max="3000">
+            </div>
+            <div>
+              <label for="sen_degree">วุฒิที่ได้รับ</label>
+              <input id="sen_degree" name="sen_degree" type="text">
+            </div>
+            <div>
+              <label for="sen_gpa">GPA</label>
+              <input id="sen_gpa" name="sen_gpa" type="number" step="0.01" min="0" max="4">
+            </div>
+          </div>
+        </fieldset>
+      </fieldset>
+
+      <fieldset>
+        <legend>เอกสารแนบ</legend>
+        <div class="note">แนบไฟล์สำเนาบัตรประชาชน / วุฒิการศึกษา (เช่น ปพ.1) — รองรับไฟล์หลายไฟล์ (PDF/JPG/PNG)</div>
+        <label for="files">แนบไฟล์ (เลือกได้หลายไฟล์)</label>
+        <input id="files" name="files[]" type="file" multiple accept=".pdf,image/*">
+        <div class="small">ขนาดไฟล์แนะนำแต่ละไฟล์ไม่เกิน 5MB</div>
+      </fieldset>
+      <fieldset>
+        <legend>ยืนยันและส่งฟอร์ม</legend>
+        <div class="checkbox-group">
+          <label><input id="agree" name="agree" type="checkbox" required> ข้าพเจ้ายอมรับเงื่อนไขและยืนยันว่าข้อมูลที่กรอกเป็นความจริง</label>
+        </div>
+        <div class="actions">
+          <input type="reset" value="รีเซ็ตฟอร์ม">
+          <input type="submit" value="ส่งคำสมัคร">
+        </div>
+      </fieldset>
+    </form>
+
+    <div id="result" style="margin-top:12px;"></div>
+  </div>
+
+  <script>
+    const birthInput = document.getElementById('birthdate');
+    const ageInput = document.getElementById('age');
+    const idcardInput = document.getElementById('idcard');
+    const idError = document.getElementById('idError');
+    const form = document.getElementById('applyForm');
+    const result = document.getElementById('result');
+
+    function calcAgeFromDOB(dob) {
+      if(!dob) return '';
+      const today = new Date();
+      const b = new Date(dob);
+      let age = today.getFullYear() - b.getFullYear();
+      const m = today.getMonth() - b.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < b.getDate())) {
+        age--;
+      }
+      return age >= 0 ? age : '';
+    }
+
+    birthInput.addEventListener('change', () => {
+      ageInput.value = calcAgeFromDOB(birthInput.value);
+    });
+
+    idcardInput.addEventListener('input', (e) => {
+      const cleaned = e.target.value.replace(/\D/g,'').slice(0,13);
+      if (cleaned !== e.target.value) e.target.value = cleaned;
+      if (cleaned.length > 0 && cleaned.length !== 13) {
+        idError.style.display = 'block';
+      } else {
+        idError.style.display = 'none';
+      }
+    });
+    form.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      result.innerHTML = '';
+      if(!form.checkValidity()){
+        form.reportValidity();
+        return;
+      }
+      const idVal = idcardInput.value.trim();
+      if(!/^\d{13}$/.test(idVal)) {
+        idError.style.display = 'block';
+        idcardInput.focus();
+        return;
+      }
+
+      const data = new FormData(form);
+    
+      const summary = {
+        title: data.get('title'),
+        firstname: data.get('firstname'),
+        lastname: data.get('lastname'),
+        idcard: data.get('idcard'),
+        birthdate: data.get('birthdate'),
+        age: data.get('age'),
+        gender: data.get('gender'),
+        phone: data.get('phone'),
+        email: data.get('email'),
+        qualification: data.get('qualification'),
+        schoolName: data.get('schoolName'),
+        gradYear: data.get('gradYear'),
+        gpa: data.get('gpa'),
+        major: data.get('major'),
+      };
+      result.innerHTML = '<pre style="background:#f3f4f6;padding:10px;border-radius:6px;">' + JSON.stringify(summary, null, 2) + '</pre>';
+
+      const ok = document.createElement('div');
+      ok.className = 'note';
+      ok.textContent = 'ฟอร์มผ่านการตรวจสอบ (ตัวอย่างข้อมูลแสดงด้านบน). หากต้องการส่งจริงให้เชื่อม endpoint ในโค้ด JavaScript และเอา ev.preventDefault() ออกหรือใช้ fetch() เพื่อส่ง FormData.';
+      result.appendChild(ok);
+
+      ok.scrollIntoView({behavior:'smooth'});
+    });
+  </script>
+</body>
+</html>
